@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="bootstrap.min.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Laua Challenges</title>
+</head>
+<body>
+<input id="num1" type="text" size="20">
+<input  id="num2" type="text" size="20">
+<div id="add"  class="btn btn-primary">Add</div>
+<div  id="sub" class="btn btn-primary">Subtract</div>
+<div id="result"></div>
+
+
+<script src="jquery-3.2.1.slim.js"></script>
+<script src="bootstrap.min.js"></script>
+
+<script>
+
+    var num1 =  parseInt($("#num1").val());
+    var num2 =  parseInt($("#num2").val());
+
+    $("#add").click(function () {
+        var num1 =  parseInt($("#num1").val());
+        var num2 =  parseInt($("#num2").val());
+        var result = num1 + num2;
+        $("#result").html("<p>result is "+ result +"</p>");
+    });
+
+    $("#sub").click(function () {
+        var num1 =  parseInt($("#num1").val());
+        var num2 =  parseInt($("#num2").val());
+        var result = num1 - num2;
+        $("#result").html("<p>result is "+ result +"</p>");
+    });
+
+
+    function  twoHighest(array) {
+        var highest = array[0];
+        var second = array[0];
+        var tempnum;
+        for (var i =0; i < array.length; i++){
+
+            if (array[i] > second){
+
+                if (array[i] > highest){
+                    tempnum = highest;
+                    highest = array[i];
+                    if(tempnum > second){
+                        second = tempnum;
+                    }
+                }
+                else {second = array[i]}
+            }
+        }
+
+        console.log("highest is " + highest + "  second highest is " + second);
+    }
+
+    var testArray = [-65, 5, -13, -23, -8, -1];
+
+    twoHighest(testArray);
+
+    function leastCommon(array) {
+        console.log(8/9);
+
+        for (var i = 0; i < array.length; i++) {
+            function highestCommonFactor(a, b) {
+                if (b == 0) return Math.abs(a);
+                return highestCommonFactor(b, a % b);
+            }
+
+            var decimal = String(array[i]);
+            var decimalArray = decimal.split(".");
+            var leftDecimalPart = decimalArray[0];
+            var rightDecimalPart = 1;
+            var numerator = leftDecimalPart;
+            var denominator = 1;
+            if (decimalArray[1] != undefined) {
+                rightDecimalPart = decimalArray[1];
+                numerator = leftDecimalPart + rightDecimalPart;
+                denominator = Math.pow(10, rightDecimalPart.length);
+
+            }
+            var factor = highestCommonFactor(numerator, denominator); // 25
+
+            denominator /= factor;
+            numerator /= factor;
+
+            console.log(numerator + "/" + denominator);
+
+        }
+    }
+
+    var denomArray = [1/2, 5/6, 3/5 , 9 ];
+    leastCommon(denomArray);
+
+    function findShortestWord(str) {
+
+        var shortword =[];
+        var tempshortWord = [];
+        str = str.toLowerCase();
+
+
+        for (var i = 0; i < str.length; i++){
+            if(str[i].charCodeAt(0) == 32) {
+
+                if (tempshortWord.length <= shortword.length || shortword.length == 0) {
+                    shortword = tempshortWord;
+                }
+                tempshortWord=[];
+            }
+            if((str[i].charCodeAt(0) > 96) && (str[i].charCodeAt(0) < 123)){
+                tempshortWord.push(str[i]);
+
+            }
+        }
+
+
+        if (tempshortWord.length <= shortword.length) {
+            shortword = tempshortWord;
+        }
+        shortword = shortword.join("");
+        console.log("Answer to find shortest word is...... " + shortword );
+    }
+
+    findShortestWord("Gene is an amazing cook");
+
+
+</script>
+</body>
+</html>
